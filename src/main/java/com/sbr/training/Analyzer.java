@@ -23,8 +23,7 @@ public class Analyzer {
                 if (cleanText.size() > 0
                         && !cleanText.get(cleanText.size() - 1).endsWith(SEMICOLON)
                         && !cleanText.get(cleanText.size() - 1).endsWith(OPENING_BRACE)
-                        && !cleanText.get(cleanText.size() - 1).endsWith(CLOSING_BRACE)
-                        && !cleanText.get(cleanText.size() - 1).endsWith(" ")) {
+                        && !cleanText.get(cleanText.size() - 1).endsWith(CLOSING_BRACE)) {
                     cleanText.set(cleanText.size() - 1, cleanText.get(cleanText.size() - 1) + " " + str);
                 } else {
                     cleanText.add(getIndent(nestingLevel) + str);
