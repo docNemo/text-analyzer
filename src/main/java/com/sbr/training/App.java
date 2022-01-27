@@ -13,7 +13,7 @@ import java.util.List;
 
 public class App {
     private final static String PATH_TO_FILE_JAVA = "src/program.java";
-    private final static String EXAMPLE_PROGRAM = "aaa; { bbbb; ccc;}";
+    private final static String EXAMPLE_PROGRAM = "aaa  { bbbb; ccc;}";
     private final static String DELIMITER = " ";
 
     public static void main(String[] args) throws AppException {

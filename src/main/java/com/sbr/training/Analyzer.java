@@ -71,7 +71,14 @@ public class Analyzer {
                     i = -1;
                     break;
                 }
+                default: {
+                    if (i == rawString.length() - 1) {
+                        readyStrings.add(rawString);
+                    }
+                    break;
+                }
             }
+
 
         }
         return readyStrings;
