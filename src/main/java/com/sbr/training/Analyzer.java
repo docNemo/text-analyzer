@@ -38,7 +38,6 @@ public class Analyzer {
                 if (str.endsWith(OPENING_BRACE)) {
                     nestingLevel++;
                 }
-
             }
         }
         return cleanText;
