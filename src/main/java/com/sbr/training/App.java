@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class App {
-    private final static String PATH_TO_FILE_JAVA = "src/program.java";
+    private final static String PATH_TO_FILE_JAVA = "src/test-resources/program.txt";
     private final static String EXAMPLE_PROGRAM = "aaa  { bbbb; ccc;}";
     private final static String DELIMITER = " ";
 
@@ -51,7 +51,7 @@ public class App {
     }
 
     private static List<String> readJavaCodeFromString(String javaCode) {
-        return new ArrayList<>(List.of(EXAMPLE_PROGRAM.split(" ")));
+        return new ArrayList<>(List.of(EXAMPLE_PROGRAM.split(DELIMITER)));
     }
 
     private static void writeToFile(List<String> text) {
