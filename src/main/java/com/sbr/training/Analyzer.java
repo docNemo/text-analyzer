@@ -11,7 +11,7 @@ public class Analyzer {
     private final static String CLOSING_BRACE = "}";
 
     public List<String> analyse(List<String> text) {
-        ArrayList<String> cleanText = new ArrayList<>();
+        List<String> cleanText = new ArrayList<>();
         int nestingLevel = 0;
 
         for (String rawStr : text) {
@@ -22,10 +22,12 @@ public class Analyzer {
                     nestingLevel--;
                 }
 
-                if (cleanText.size() > 0
+                if (
+                        cleanText.size() > 0
                         && !cleanText.get(cleanText.size() - 1).endsWith(SEMICOLON)
                         && !cleanText.get(cleanText.size() - 1).endsWith(OPENING_BRACE)
-                        && !cleanText.get(cleanText.size() - 1).endsWith(CLOSING_BRACE)) {
+                        && !cleanText.get(cleanText.size() - 1).endsWith(CLOSING_BRACE)
+                ) {
                     if (!str.equals(SEMICOLON)) {
                         cleanText.set(cleanText.size() - 1, cleanText.get(cleanText.size() - 1) + SPACE + str);
                     } else {
@@ -40,50 +42,48 @@ public class Analyzer {
                 }
             }
         }
+
         return cleanText;
     }
 
     private List<String> getReadyString(String rawString) {
         rawString = rawString.trim();
-        ArrayList<String> readyStrings = new ArrayList<>();
+        List<String> readyStrings = new ArrayList<>();
         int indexLastSplit = 0;
+
         for (int i = 0; i < rawString.length(); i++) {
             switch (rawString.charAt(i)) {
-                case ';': {
+                case ';' -> {
                     readyStrings.add(rawString.substring(indexLastSplit, i).trim() + SEMICOLON);
                     rawString = rawString.substring(i + 1).trim();
                     i = -1;
-                    break;
                 }
-                case '{': {
-                    String baseStr = rawString.substring(indexLastSplit, i).trim().equals("") ? "" : rawString.substring(indexLastSplit, i).trim() + SPACE;
+                case '{' -> {
+                    String baseStr = rawString.substring(indexLastSplit, i).trim().equals("")
+                            ? ""
+                            : rawString.substring(indexLastSplit, i).trim() + SPACE;
                     readyStrings.add(baseStr + OPENING_BRACE);
                     rawString = rawString.substring(i + 1).trim();
                     i = -1;
-                    break;
                 }
-                case '}': {
+                case '}' -> {
                     readyStrings.add(CLOSING_BRACE);
                     rawString = rawString.substring(i + 1).trim();
                     i = -1;
-                    break;
                 }
-                case ' ': {
+                case ' ' -> {
                     readyStrings.add(rawString.substring(indexLastSplit, i));
                     rawString = rawString.substring(i + 1).trim();
                     i = -1;
-                    break;
                 }
-                default: {
+                default -> {
                     if (i == rawString.length() - 1) {
                         readyStrings.add(rawString);
                     }
-                    break;
                 }
             }
-
-
         }
+
         return readyStrings;
     }
 
